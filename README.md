@@ -1,13 +1,13 @@
-HashPool
+hashpool
 =========
 [![Build Status](https://travis-ci.org/atonparker/hashpool.png?branch=master)](https://travis-ci.org/atonparker/hashpool)
 
-__HashPool__ is a fixed-size pool of reusable IDs. Because it is a fixed-size, the generated IDs will always be the same length and are garunteed unique. It generates IDs in O(n/2) time.
+__hashpool__ is a fixed-size pool of reusable IDs. Because it is a fixed-size, the generated IDs will always be the same length and are garunteed unique. It generates IDs in O(n/2) time.
 
 Methods
 -------
 
-#### new Hashpool(options)
+#### new HashPool(options)
 The constructor takes an object with two optional parameters: `bits`, which is the number of bits in the generated IDs, and `base`, which is the radix of the generated IDs. The defaults are `{ bits: 24, base: 16 }` which generate 6-digit hexadecimal IDs.
 
 #### take()
