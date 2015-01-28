@@ -7,21 +7,17 @@ __HashPool__ is a fixed-size pool of reusable IDs. Because it is a fixed-size, t
 Methods
 -------
 
-<dl>
+#### new Hashpool(options)
+The constructor takes an object with two optional parameters: `bits`, which is the number of bits in the generated IDs, and `base`, which is the radix of the generated IDs. The defaults are `{ bits: 24, base: 16 }` which generate 6-digit hexadecimal IDs.
 
-  <dt>(options)</dt>
-  <dd>The constructor takes an object with two optional parameters: <code>bits</code>, which is the number of bits in the generated IDs, and <code>base</code>, which is the radix of the generated IDs. The defaults are <code>{ bits: 24, base: 16 }</code> which generate 6-digit hexadecimal IDs.</dd>
+#### take()
+Take an ID from the pool. Will throw an `Error` if the pool is empty.
 
-  <dt>take()</dt>
-  <dd>Take an ID from the pool. Will throw an <code>Error</code> if the pool is empty.</dd>
+#### taken(value)
+Returns true if the given ID was taken from the pool.
 
-  <dt>taken(value)</dt>
-  <dd>Returns true if the given ID was taken from the pool.</dd>
-
-  <dt>free(value)</dt>
-  <dd>Return an ID to the pool, where it is eligible for reuse.</dd>
-
-</dl>
+#### free(value)
+Return an ID to the pool, where it is eligible for reuse.
 
 Examples
 --------
@@ -52,28 +48,4 @@ Generating custom IDs:
 Testing
 -------
 
-HashPool uses [Mocha](http://visionmedia.github.io/mocha/) for testing. To run the test suite, call `npm test` in the project directory.
-
-License
--------
-
-The MIT License (MIT)
-
-Copyright (c) 2013 Chris Parker
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+__hashpool__ uses [Mocha](http://mochajs.org) for testing. To run the test suite, call `npm test` in the project directory.
