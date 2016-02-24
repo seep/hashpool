@@ -2,50 +2,56 @@ hashpool
 =========
 [![Build Status](https://travis-ci.org/atonparker/hashpool.png?branch=master)](https://travis-ci.org/atonparker/hashpool)
 
-__hashpool__ is a fixed-size pool of reusable IDs. Because it is a fixed-size, the generated IDs will always be the same length and are garunteed unique. It generates IDs in O(n/2) time.
+__hashpool__ is a fixed-size pool of reusable hashes.
 
-Methods
--------
+## Examples
 
-#### new HashPool(options)
-The constructor takes an object with two optional parameters: `bits`, which is the number of bits in the generated IDs, and `base`, which is the radix of the generated IDs. The defaults are `{ bits: 24, base: 16 }` which generate 6-digit hexadecimal IDs.
+Generating six-digit hex hashes:
 
-#### take()
-Take an ID from the pool. Will throw an `Error` if the pool is empty.
+```javascript
+const pool = hashpool();
 
-#### taken(value)
-Returns true if the given ID was taken from the pool.
+pool.take(); // 5a73f0
+pool.take(); // 98de2c
+pool.take(); // 4718ef
+```
 
-#### free(value)
-Return an ID to the pool, where it is eligible for reuse.
+Returning hashes to the pool:
 
-Examples
---------
+```javascript
+const pool = hashpool();
 
-Generating 6-digit hexadecimal IDs:
+let hash = pool.take();
+pool.taken(hash); // true
 
-    hp = new HashPool
-    
-    for i in [0..99]
-      uid = do hp.take
+pool.free(hash);
+pool.taken(hash); // false
+```
 
-Returning IDs to the pool:
+Generating custom hashes:
 
-    hp = new HashPool
-    
-    uid = do hp.take
-    hp.taken uid # true
+```javascript
+const pool = hashpool({ bits: 4, base: 2 });
 
-    hp.free uid
-    hp.taken uid # false
+pool.take() // 0110
+pool.take() // 0010
+pool.take() // 1011
+```
 
-Generating custom IDs:
-  
-    hp = new HashPool { bits: 4, base: 8 }
+## API
 
-    uid = do hp.take # generates a base-8 ID between 00 and 17
+#### `hashpool(options)`
+Makes a new hashpool. `options.bits` will change the number of bits the hashes. More bits, bigger pool. `options.base` will change the radix of the hashes, between 2 and 36. Bigger base, fewer digits with more characters. The defaults are `{ bits: 24, base: 16 }` which generate six-digit hexadecimal hashes.
 
-Testing
--------
+#### `hashpool#take()`
+Take a hash from the pool. Will throw if the pool is empty.
 
-__hashpool__ uses [Mocha](http://mochajs.org) for testing. To run the test suite, call `npm test` in the project directory.
+#### `hashpool#taken(hash)`
+Returns true if the hash was taken from the pool.
+
+#### `hashpool#free(value)`
+Put a hash back in the pool, where it can be reused.
+
+## Testing
+
+__hashpool__ uses [tape](https://github.com/substack/tape) for testing. Simply run `npm test` in the project directory.

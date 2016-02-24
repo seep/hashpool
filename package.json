@@ -18,9 +18,10 @@
     "url": "https://github.com/atonparker/hashpool.git"
   },
   "dependencies": {
-    "bitterset": "^2.0.0"
+    "bitterset": "^2.1.0"
   },
   "devDependencies": {
+    "benchmark": "^2.1.0",
     "faucet": "0.0.1",
     "lodash.times": "^4.0.2",
     "tape": "^4.4.0"

@@ -36,12 +36,10 @@ hashpool.prototype.take = function() {
   let next = this.pool.forwards(false, start).next();
 
   // If there weren't any open hashes after the start index, look backwards.
-  if (next.done || next.value >= this.size)
-    next = this.pool.backwards(false, start).next();
+  if (next.value >= this.size) next = this.pool.backwards(false, start).next();
 
   // If there still aren't any open hashes before the start index, it's full.
-  if (next.done)
-    throw new Error('The pool is empty.');
+  if (next.done) throw new Error('The pool is empty.');
 
   // Flag the hash as taken.
   let index = next.value;
