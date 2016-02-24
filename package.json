@@ -1,26 +1,29 @@
 {
   "name": "hashpool",
-  "version": "0.0.2",
-  "author": "Chris Parker <me@chrisaparker.com>",
+  "version": "1.0.0",
+  "author": "Chris Parker <chris@aton.io>",
   "description": "a fixed-size hash pool",
-  "keywords": [ "hash", "pool", "uuid", "name" ],
-  "main": "lib/hashpool.js",
+  "keywords": [
+    "hash",
+    "pool",
+    "uuid",
+    "name"
+  ],
+  "main": "src/index.js",
   "scripts": {
-    "test": "mocha --require should --compilers coffee:coffee-script/register --reporter spec",
-    "build": "coffee --bare --compile --output lib/ src/",
-    "prepublish": "npm run build"
+    "test": "node test/index.js | faucet"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/atonparker/hashpool.git"
   },
   "dependencies": {
-    "bitterset": "^0.0.5"
+    "bitterset": "^2.0.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.8.0",
-    "mocha": "^2.1.0",
-    "should": "^4.6.1"
+    "faucet": "0.0.1",
+    "lodash.times": "^4.0.2",
+    "tape": "^4.4.0"
   },
   "license": "MIT"
 }
