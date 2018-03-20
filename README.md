@@ -1,6 +1,5 @@
 hashpool
 =========
-[![Build Status](https://travis-ci.org/atonparker/hashpool.png?branch=master)](https://travis-ci.org/atonparker/hashpool)
 
 __hashpool__ is a fixed-size pool of reusable hashes.
 
